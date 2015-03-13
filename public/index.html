@@ -1,9 +1,48 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title></title>
+    <title>Node Js</title>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/client.js"></script>
+
 </head>
-<body>
-    <h1>yayyyyyyyyyyyyy</h1>
+<body ng-app="DeveloperApp">
+    <div class="container" ng-controller="DeveloperController">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        <input ng-model="webs.name" class="form-control" />
+                    </th>
+                    <th>
+                        <button ng-click="add(webs)" class="btn btn-success pull-right">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="web in websites">
+                    <td>
+                        {{web._id}}
+                    </td>
+                    <td>
+                        {{web.name}}
+                    </td>
+                    <td>
+                        {{web.create}}
+                    </td>
+                    <td>
+                        <button ng-click="remove(web._id)" class="btn btn-danger pull-right">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
