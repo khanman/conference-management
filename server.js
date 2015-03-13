@@ -1,6 +1,8 @@
 var express = require('express');
 var mongoose = require('mongoose');
-//mongoose.connect('mongodb://localhost/conf');
+
+var connectionStrings = process.env.OPENSHIFT_MONGODB_DB_URL || 'mongodb://localhost/conf'
+mongoose.connect(connectionStrings);
 var app = express();
 
 app.use(express.static(__dirname + '/public'));
