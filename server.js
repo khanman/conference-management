@@ -1,6 +1,6 @@
 var express = require('express');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/conf');
+//mongoose.connect('mongodb://localhost/conf');
 var app = express();
 
 app.use(express.static(__dirname + '/public'));
