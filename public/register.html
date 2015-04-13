@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Register</title>
+    <script type="text/javascript">
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div id="legend">
+            <legend class="">Register</legend>
+        </div>
+        <div class="control-group">
+            <!-- Username -->
+            <label class="control-label" for="username">FirstNAme</label>
+            <div class="controls">
+                <input type="text" class="form-control" ng-model="users.firstname" />
+            </div>
+        </div>
+        <div class="control-group">
+            <!-- Username -->
+            <label class="control-label" for="username">LastName</label>
+            <div class="controls">
+                <input type="text" class="form-control" ng-model="users.lastname" />
+            </div>
+        </div>
+        <div class="control-group">
+            <!-- Username -->
+            <label class="control-label" for="username">UserName</label>
+            <div class="controls">
+                <input type="text" class="form-control" ng-model="users.name" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="password">Email</label>
+            <div class="controls">
+                <input class="form-control" ng-model="users.email">
+            </div>
+        </div>
+        <div class="control-group">
+            <!-- E-mail -->
+            <label class="control-label">About</label>
+            <div class="controls">
+                <textarea class="form-control" ng-model="users.about"></textarea>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="password">Interest</label>
+            <div class="controls">
+                <input class="form-control" ng-model="users.interest">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="password">Fb link</label>
+            <div class="controls">
+                <input class="form-control" ng-model="users.fb">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="password">Github Link</label>
+            <div class="controls">
+                <input class="form-control" ng-model="users.github">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="password">Password</label>
+            <div class="controls">
+                <input type="password" class="form-control" ng-model="users.password">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="password">Photo</label>
+            <div class="controls">
+                <input type="file" ng-file-select="onFileSelect($files)">
+                <div ng-show="dropSupported" class="drop-box" ng-file-drop="onFileSelect($files);"
+                     ng-file-drop-available="dropSupported=true">
+                </div>
+                <input type="checkbox" ng-model="users.photo">Upload right away
+
+            </div>
+        </div>
+        <label class="control-label">Paper</label>
+        <button class="btn btn-success" ng-click='addPathParam()'>
+            <span class="glyphicon glyphicon-plus"></span>
+        </button>
+        <div class="control-group" ng-repeat="paper in papers">
+            <div id='TextBoxesGroup'>
+                <div id="TextBoxDiv1">
+                    <label class="control-label">Paper</label>
+                    <div class="controls">
+                        <input type='textbox' id='textbox1' placeholder="Title" ng-model="paper.name">
+                        <input type='textbox' id='textbox1' placeholder="Url" ng-model="paper.url">
+                        <button class="btn btn-danger" ng-click='removePathParam()'>
+                            <span class="glyphicon glyphicon-minus"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="control-group">
+            <!-- Password -->
+            <label class="control-label">State</label>
+            <div class="controls">
+                <input type="text" class="form-control" ng-model="users.state">
+            </div>
+        </div>
+        <div class="control-group">
+            <!-- Password -->
+            <label class="control-label">City</label>
+            <div class="controls">
+                <input type="text" class="form-control" ng-model="users.city">
+            </div>
+        </div>
+        <div class="control-group">
+            <!-- Password -->
+            <label class="control-label">Country</label>
+            <div class="controls">
+                <input type="text" class="form-control" ng-model="users.country">
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                <button ng-click="register(users)" class=" btn btn-success center-block">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

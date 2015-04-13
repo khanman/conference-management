@@ -1,48 +1,60 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Node Js</title>
+    <title>Conference</title>
     <link href="css/bootstrap.css" rel="stylesheet" />
-    <script src="js/jquery.js"></script>
+    <script src="js/jquery-1.9.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/angular.js"></script>
-    <script src="js/client.js"></script>
-
+    <script src="js/angular-route.js"></script>
+    <script src="js/angular-ui-router.js"></script>
+    <script src="js/conf.js"></script>
+    <script src="js/LoginController.js"></script>
+    <script src="js/ConferenceController.js"></script>
+    <script src="js/TalkController.js"></script>
+    <script src="js/ProfileController.js"></script>
+    <script src="js/RegisterController.js"></script>
+    <script src="js/Admin.js"></script>
+    <script src="js/AdminTalk.js"></script>
+    <script src="js/MyTalk.js"></script>
 </head>
-<body ng-app="DeveloperApp">
-    <div class="container" ng-controller="DeveloperController">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>
-                        <input ng-model="webs.name" class="form-control" />
-                    </th>
-                    <th>
-                        <button ng-click="add(webs)" class="btn btn-success pull-right">
-                            <span class="glyphicon glyphicon-plus"></span>
-                        </button>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="web in websites">
-                    <td>
-                        {{web._id}}
-                    </td>
-                    <td>
-                        {{web.name}}
-                    </td>
-                    <td>
-                        {{web.create}}
-                    </td>
-                    <td>
-                        <button ng-click="remove(web._id)" class="btn btn-danger pull-right">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+<body ng-app="ConferenceApp">
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#/home">Conference</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-controller="LogoutController">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#/login" ng-show='!currentUser'>Login</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li><a href="#/profile" ng-show='currentUser'>Profile</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#/Mytalks" ng-show='currentUser'>MyTalks</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li><a href="#/map" ng-show='currentUser'>Map</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#/register" ng-show='!currentUser'>Register</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li><a ng-click="logout()" ng-show='currentUser'>Logout</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    </div>
+    <div class="container" ng-view>
     </div>
 </body>
 </html>

@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Conference</title>
+</head>
+<body>
+        <h3>Search Conference</h3>
+        <div class="input-group">
+            <input ng-model="city" type="text" class="form-control" placeholder="Location">
+            <span class="input-group-btn">
+                <button ng-click="searchTitle(city)" class="btn btn-default" type="button">Go!</button>
+            </span>
+        </div>
+        <div ng-show="conf">
+            <h3>Conference Details</h3>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Conference Name</th>
+                        <th>State</th>
+                        <th>City</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="con in conf">
+                        <td>
+                            <a href="#/conference/{{con._id}}">{{con.name}}</a>
+                        </td>
+                        <td>
+                            {{con.state}}
+                        </td>
+                        <td>
+                            {{con.city}}
+                        </td>
+                        <td>
+                            {{con.confdate}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    <script src="js/jquery.geocomplete.js"></script>
+    <script>
+        $(function () {
+            $("#geocomplete").geocomplete();
+        });
+    </script>
+</body>
+</html>

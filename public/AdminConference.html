@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Conference Update</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Conference Admin Portal</h1>
+        <hr>
+        <h4>Conference Details</h4>
+        <div ng-repeat="con in confbyid">
+            <div>
+                <table class="table table-striped table-bordered">
+                    <tbody>
+                        <tr>
+                            <td>Conference Name</td>
+                            <td>
+                                <input class="form-control list-group-item" ng-model="con.name" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>City</td>
+                            <td>
+                                <input class="form-control list-group-item" ng-model="con.city" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>About</td>
+                            <td><textarea class="form-control" ng-model="con.about"></textarea>
+                               
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>State</td>
+                            <td>
+                                <input class="form-control list-group-item" ng-model="con.state" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Talk Name</td>
+                            <td>
+                                <ul class="list-unstyled">
+                                    <li class="" ng-repeat="tak in con.talks">
+                                        <a href="#/admintalk/{{con._id}}/{{tak._id}}">{{tak.tname}}</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <button ng-click="update(con,con._id)" class="btn btn-success pull-right">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

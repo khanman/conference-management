@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Conference Update</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Conference Admin Portal</h1>
+        <hr>
+        <h4>Talk Details</h4>
+        <div>
+            <div>
+                <table class="table table-striped table-bordered">
+                    <tbody>
+                        <tr>
+                            <td>Talk Name</td>
+                            <td>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <input class="form-control list-group-item " ng-model="talk.tname" />
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Talk Description</td>
+                            <td>
+                                <ul class="list-unstyled">
+                                    <li class="">
+                                        <input class="form-control list-group-item " ng-model="talk.desc" />
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Presenter</td>
+                            <td>
+                                <select ng-model="myselect">
+                                    <option ng-repeat="o in user" value="{{o._id}}">
+                                        {{o.name}}
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <button ng-click="updatetalk()" class="btn btn-success pull-right">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

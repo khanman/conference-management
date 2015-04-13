@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Conference</title>
+
+</head>
+<body>
+    <div class="container">
+        <h4>Conference Details</h4>
+        <div ng-repeat="con in conf">
+            <table class="table table-striped table-bordered">
+                <tbody>
+                    <tr>
+                        <td>Conference Name</td>
+                        <td>
+                            {{con.name}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>State</td>
+                        <td>
+                            {{con.state}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>City</td>
+                        <td>
+                            {{con.city}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>About</td>
+                        <td>
+                            {{con.about}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Sponsor</td>
+                        <td>
+                            <ul class="list-unstyled">
+                                <li class="" ng-repeat="p in con.sponsor">
+                                    <ul class="list-unstyled">
+                                        <li class="">
+                                            {{p.name}}
+                                        </li>
+                                        <li class="">
+                                            {{p.url}}
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Review</td>
+                        <td>
+                            <ul class="list-unstyled">
+                                <li class="" ng-repeat="p in con.c_review">
+                                    <ul class="list-unstyled">
+                                        <li class="">
+                                            {{p.comment}}
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Talk</td>
+                        <td>
+                            <ul class="list-unstyled"><li class="" ng-repeat="tak in con.talks"><a href="#/talk/{{con._id}}/{{tak._id}}">{{tak.tname}}</a></li></ul>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <div class="control-group" ng-show='currentUser'>
+                <label class="control-label">Comment</label>
+                <div class="controls">
+                    <textarea class="form-control" ng-model="newcomment" placeholder="enter your text here"></textarea>
+                </div>
+                <button class="btn btn-success" ng-click='postReview(newcomment)'>
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
