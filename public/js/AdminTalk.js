@@ -50,7 +50,7 @@ app.controller("AdminTalkController", function ($scope, $http, $routeParams, Adm
     }
     $scope.updatetalk = function () {
         var flag = false;
-        var k =0;
+        var k = 0;
         var user = finduser($scope.myselect);
         for (var i = 0; i < conf.talks.length; i++) {
             if (conf.talks[i]._id === talkid) {
@@ -89,24 +89,45 @@ app.controller("AdminTalkController", function ($scope, $http, $routeParams, Adm
                 }
             }
         }
-        //        var user = finduser($scope.myselect);
-        //        if (user) {
-        //            conf.talks[i].P_name.push({ tp: user.name, _id: user._id })
-        //            //conf.c_attendee.push({ attendeeName: user.name, _id: user._id })
-        //        }
-        //    }
-        //}
-        //var user = finduser($scope.myselect);
-        //if (user) {
-        //    conf.talks[i].P_name.push({ tp: user.name, _id: user._id })
-        //    conf.c_attendee.push({ attendeeName: user.name, _id: user._id })
-        //}
         AdminTalkService.edittalk(conf, function (response) {
             $scope.talkbyid = response;
         });
 
-        user.talk_presented.push({ talkname: $scope.talk.tname, _id: talkid, desc: $scope.talk.desc })
-        user.c_Presented.push({ pName: conf.name, _id: confid })
+        var flag = false;
+        for (var m = 0; m < $scope.user.length; m++) {
+            if ($scope.user[m]._id === user._id) {
+                var c = $scope.user[m].talk_presented;
+                for (var i = 0; i < c.length; i++) {
+                    if (c[i].talkname === $scope.talk.tname) {
+                        flag = true;
+                        alert("same talkname")
+                        break;
+                    }
+                }
+            }
+        }
+        if (!flag) {
+            user.talk_presented.push({ talkname: $scope.talk.tname, _id: talkid, desc: $scope.talk.desc })
+        }
+
+        var atcon = false;
+        for (var n = 0; n < $scope.user.length; n++) {
+            if ($scope.user[n]._id === user._id) {
+                var d = $scope.user[n].c_Presented
+                for (var i = 0; i < d.length; i++) {
+                    if (d[i].pName === conf.name) {
+                        atcon = true;
+                        alert(" same conference name")
+                        break;
+                    }
+                }
+            }
+        }
+        if (!flag) {
+            user.c_Presented.push({ pName: conf.name, _id: confid })
+        }
+        //user.talk_presented.push({ talkname: $scope.talk.tname, _id: talkid, desc: $scope.talk.desc })
+        //user.c_Presented.push({ pName: conf.name, _id: confid })
         AdminTalkService.edituser(user, function (response) {
             $scope.talkbyid = response;
         });
