@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+
+    <div ng-include="'usermenu.html'"></div>
+    <br/><br/>
+
+    <div class="container">
+    <div class="page-header">
+        <h1 id="">Schedule</h1>
+    </div>
+    <div id="timeline">
+<div class="row timeline-movement"  ng-repeat="con in conf | orderBy:'confdate':true">
+
+    <div class="timeline-badge">
+        <span class="timeline-balloon-date-day">{{con.confdate.split("T")[0] | date: 'dd'}} </span>
+        <span class="timeline-balloon-date-month">{{con.confdate.split("T")[0] | date: 'MMM'}} </span>
+    </div>
+    <div class="col-sm-6  timeline-item">
+        <div class="row">
+            <div class="col-sm-11">
+                <div class="timeline-panel credits">
+                    <ul class="timeline-panel-ul">
+                        <li><span class="importo">Conference Name:{{con.name}}</span></li>
+                        <li><span class="causale">Conference Location : {{con.city}}, {{con.state}}</span></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6  timeline-item">
+        <div class="row">
+            <div class="col-sm-offset-1 col-sm-11">
+                <div class="timeline-panel credits">
+                    <ul class="timeline-panel-ul" >
+                        <li><span class="importo">Conference Talks</span></li>
+                        <li><ul ng-repeat=" tak in con.talks">
+                            <li><span class="causale">{{tak.tname}} {{tak.time}}</span></li>
+                        </ul></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+</div>
+
+    <div ng-include="'footer.html'"></div>
+</body>
+</html>

@@ -33,10 +33,11 @@ app.controller("AdminConferenceController", function ($scope, $http, $routeParam
     $scope.sponsor = []
     AdminService.findAll(function (response) {
         $scope.conf = response;
+
     });
 
      $scope.addPathParam = function () {
-         $scope.talks.push({ tname: ""});
+         $scope.talks.push({ tname: "",time:""});
     };
     $scope.removePathParam = function (index) {
         $scope.talks.splice(index, 1);

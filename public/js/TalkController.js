@@ -11,10 +11,15 @@
         $http.put("/rest/userupdate/" + currentUser._id, currentUser)
         .success(callback);
     }
+    var createpayment = function (payment, callback) {
+        $http.post("/rest/payment/", payment)
+        .success(callback);
+    }
     return {
         findTalk: findTalk,
         edittalk: edittalk,
-        edituser: edituser
+        edituser: edituser,
+        createpayment: createpayment
     }
 });
 
@@ -45,7 +50,17 @@ app.controller("TalkController", function ($scope, $http, $routeParams, TalkServ
             $scope.talkbyid = response;
         });
     }
-    $scope.attend = function () {
+    //$scope.redirect = function () {
+    //    window.location = "#/payment";
+    //}
+    //$scope.payment = function () {
+    //    payment.userid = $scope.currentUser._id
+    //    TalkService.createpayment(payment, function (response) {
+    //        console.log(response)
+    //        $scope.payment = response;
+    //    });
+    //}
+    $scope.attend = function (payment) {
         var flag = false;
         for (var i = 0; i < conf.talks.length; i++) {
             if (conf.talks[i]._id === talkid) {
@@ -117,6 +132,12 @@ app.controller("TalkController", function ($scope, $http, $routeParams, TalkServ
                 console.log(response)
                 $scope.user = response;
             });
+            payment.userid = $scope.currentUser._id
+            payment.talkid = talkid
+            TalkService.createpayment(payment, function (response) {
+                console.log(response)
+                $scope.payment = response;
+            })
         }
     }
 });

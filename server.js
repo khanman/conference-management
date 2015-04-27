@@ -14,24 +14,55 @@ var LocalStrategy = require('passport-local').Strategy;
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
+var cookieSession = require('cookie-session');
+var fs = require('fs');
+
+app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+//app.use(multer()); // for parsing multipart/form-data
+app.use(cookieParser());
 app.use(session({
     secret: 'this is the secret'
 }));
-app.use(cookieParser())
 
-app.use(bodyParser.json()); // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-app.use(multer()); // for parsing multipart/form-data
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(express.static(__dirname + '/public'));
+app.use(multer({
+    dest: './public/uploads/',
+    rename: function (fieldname, filename) {
+        console.log("Hello");
+        return filename + Date.now();
+    },
+    onFileUploadStart: function (file) {
+        console.log(file.originalname + ' is starting ...')
+    },
+    onFileUploadComplete: function (file) {
+        console.log(file.fieldname + ' uploaded to  ' + file.path)
+        done = true;
+    }
+}));
+
+var multer1 = multer({ dest: './public/uploads/' });
+
+/*Handling routes.*/
+
+app.post('/api/photo', function (req, res) {
+    if (done == true) {
+        console.log(req.files);
+        res.json(req.files);
+        res.end("File uploaded.");
+    }
+});
+
 // Conference 
 var ConferenceSchema = new mongoose.Schema({
     name: String,
     state: String,
     about: String,
     city: String,
+    country :String,
     sponsor: [{ name: String, url: String }],
     c_attendee: [{
         attendeeName: String, _id: String
@@ -39,6 +70,7 @@ var ConferenceSchema = new mongoose.Schema({
     confdate: { type: Date, default: Date.now },
     talks: [{
         tname: String,
+        time: String,
         desc: String,
         review: [{ _id: String, name: String, comment: String }],
         a_name: [{ ta_name: String, _id: String }],
@@ -67,49 +99,104 @@ var UserSchema = new mongoose.Schema({
     github: String,
     c_attended: [{ aName: String, _id: String }],
     c_Presented: [{ pName: String, _id: String }],
-    talk_presented: [{ talkname: String, _id: String,desc:String }],
+    talk_presented: [{ talkname: String, _id: String, desc: String }],
     papers: [{ name: String, url: String }],
     date: { type: Date, default: Date.now },
     following: [{ name: String, _id: String }]
 });
 var User = mongoose.model('User', UserSchema);
 
+var PaymentSchema = new mongoose.Schema({
+    cardno: String,
+    cvv: String,
+    userid: String,
+    talkid: String,
+    amount: { type: String, default: "15usd" }
+});
+var Payment = mongoose.model('Payment', PaymentSchema);
+var imgPath = 'C:\Users/MansoorAhmed/mk/public/images/DS.png';
+ 
+//var schema = new mongoose.Schema({
+//    img: { data: Buffer, contentType: String }
+//});
+
+//// our model
+//var A = mongoose.model('A', schema);
+//var a = new A;
+//a.img.data = fs.readFileSync(imgPath);
+//a.img.contentType = 'image/png';
+//a.save(function (err, a) {
+//    if (err) throw err;
+ 
+//    console.error('saved img to mongo');
+//});
 
 //login
+//passport.use(new LocalStrategy({
+//    usernameField: 'name',
+//    passwordField: 'password'
+//},
+//function (name, password, done) {
+//    User.findOne({ name: name, password: password }).exec(function (err, user) {
+//        if (err) { return done(err); }
+//        if (!user) {
+//            return done(null, false, { message: 'Incorrect username.' });
+//        }
+//        return done(null, user);
+//    })
+//}));
+
 passport.use(new LocalStrategy({
     usernameField: 'name',
     passwordField: 'password'
 },
-function (name, password, done) {
-    User.findOne({ name: name, password: password }).exec(function (err, user) {
-        if (err) { return done(err); }
-        if (!user) {
-            return done(null, false, { message: 'Incorrect username.' });
-        }
-        return done(null, user);
-    })
-}));
-
+    function (name, password, done) {
+        User.findOne({ name: name, password: password }, function (err, user) {
+            console.log("user" + user);
+            console.log("err" + err);
+            if (err) { return done(err); }
+            if (!user) { return done(null, false); }
+            return done(null, user);
+        })
+    }));
 passport.serializeUser(function (user, done) {
-    done(null, user);
+    done(null, user.id);
 });
 
 passport.deserializeUser(function (id, done) {
-    User.findOne(id, function (err, user) {
-        console.log("dese" + user)
+    User.findById(id, function (err, user) {
         done(err, user);
     });
 });
 
-app.post('/login', function (req, res, next) {
-    passport.authenticate('local', function (err, user, info) {
-        if (!user) {
-            res.json({ message: 'Incorrect' });
-        } else {
-            res.json(user);
-        }
-    })(req, res, next)
+app.post("/login", passport.authenticate('local'), function (req, res) {
+    console.log("csccccsscs" + req.user)
+    console.log("fgvbin"+req.err)
+    var user = req.user;
+    res.json(user);
 });
+passport.serializeUser(function (user, done) {
+    done(null, user.id);
+});
+passport.deserializeUser(function (id, done) {
+    User.findById(id, function (err, user) {
+        done(err, user);
+    });
+});
+//app.post('/login', function (req, res, next) {
+//    passport.authenticate('local', function (err, user, info) {
+//        //req.session.passport = user;
+//        console.log(req.session);
+//        //console.log("user" + req.user);
+//        if (!user) {
+//            res.json({ message: 'Incorrect' });
+//        } else {
+//            //req.session.passport = user;
+//            console.log(req.session);
+//            res.json(user);
+//        }
+//    })(req, res, next)
+//});
 
 app.get('/login', function (req, res) {
     User.find(function (err, docs) {
@@ -118,8 +205,6 @@ app.get('/login', function (req, res) {
 });
 
 app.get('/loggedin', function (req, res) {
-    console.log("ewifiwufkbj");
-    console.log(req.user);
     res.send(req.isAuthenticated() ? req.user : '0');
 });
 
@@ -133,7 +218,6 @@ var auth = function (req, res, next) {
     else
         next();
 };
-
 
 // CONFERENCE METHODS
 // admin
@@ -302,19 +386,15 @@ app.get('/rest/users/', function (req, res) {
     })
 });
 
-//unfollow
-app.put('/rest/follow/update/', function (req, res) {
-    console(req.body)
-    //delete req.body._id;
-    //console.log(req.params.id);
-    //console.log("I am here in user update" + req.body)
-    //User.update({ _id: req.params.id }, { $pull: { following: { _id: { $gt: user._id } } } }, function (err, count) {
-    //    console.log(err);
-    //    User.find(function (err, docs) {
-    //        res.json(docs);
-    //    });
-    //});
 
+app.post('/rest/payment/', function (req, res) {
+    console.log(req.body)
+    var pay = new Payment(req.body);
+    pay.save(function (err, doc) {
+        Payment.find(function (err, docs) {
+            res.json(docs);
+        })
+    });
 });
 
 var ip = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';

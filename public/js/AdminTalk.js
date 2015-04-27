@@ -109,7 +109,6 @@ app.controller("AdminTalkController", function ($scope, $http, $routeParams, Adm
         if (!flag) {
             user.talk_presented.push({ talkname: $scope.talk.tname, _id: talkid, desc: $scope.talk.desc })
         }
-
         var atcon = false;
         for (var n = 0; n < $scope.user.length; n++) {
             if ($scope.user[n]._id === user._id) {

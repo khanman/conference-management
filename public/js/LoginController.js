@@ -19,22 +19,25 @@
         .success(callback);
     }
     return {
-        findAll:findAll,
+        findAll: findAll,
         login: login,
-        logout:logout
+        logout: logout
     }
 });
 
-app.controller("LoginController", function ($rootScope,$scope, $http, $routeParams,$location,SecureService) {
+app.controller("LoginController", function ($rootScope, $scope, $http, $routeParams, $location, SecureService) {
     $scope.login = function (user) {
         SecureService.login(user, function (response) {
-            if (response.message == "Incorrect") {
-                alert("Wrong username and password")
-                $location.url('/login')
-                }
-            else {
-                $location.url('/profile');
-            }});
+            console.log("chgvjhbklvcgjvkl;" + response)
+            //if (response.message == "Incorrect") {
+            //    $rootScope.currentUser = null;
+            //    alert("Wrong username and password")
+            //    $location.url('/login')
+            //    }
+            //else {
+            $location.url('/profile');
+            //}
+        });
     }
 
     SecureService.findAll(function (response) {

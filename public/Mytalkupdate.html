@@ -4,62 +4,42 @@
     <title>MyTalk Update</title>
 </head>
 <body>
+
+    <!-- Navigation -->
+    <div ng-include="'usermenu.html'"></div>
+
+    <!-- Page Content -->
+    <br/><br/>
     <div class="container">
-        <h4>Talk Details</h4>
-        <div>
-            {{talk}}
-            <div>
-                <table class="table table-striped table-bordered">
-                    <tbody>
-                        <tr>
-                            <td>Talk Name</td>
-                            <td>
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <input class="form-control list-group-item " ng-model="talk.tname" />
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Talk Description</td>
-                            <td>
-                                <ul class="list-unstyled">
-                                    <li class="">
-                                        <input class="form-control list-group-item " ng-model="talk.desc" />
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr >
-                            <td>Details</td>
-                            <td>
-                                <ul class="list-unstyled">
-                                    <li class="">
-                                        <input class="form-control list-group-item " placeholder="Title" ng-model="name" />
-                                        <input class="form-control list-group-item " placeholder="url" ng-model="url" />
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <button ng-click="updatetalk()" class="btn btn-success pull-right">
-                                    <span class="glyphicon glyphicon-plus"></span>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <!--<button class="btn btn-danger" ng-click='removePathParam()'>
-                    <span class="glyphicon glyphicon-minus">Delete Talk</span>
-                </button>
-                <button class="btn btn-success" ng-click='addPathParam()'>
-                    <span class="glyphicon glyphicon-plus">Add Talk</span>
-                </button>-->
+        <h3>Talk Details</h3>
+        <hr class="colorgraph">
+        <form name="sentMessage" id="contactForm">
+            <div class="control-group form-group">
+                <div class="controls">
+                    <label>Talk Name:</label>
+                    <input type="text" class="form-control" ng-model="talk.tname" />
+                </div>
             </div>
-        </div>
+            <div class="control-group form-group">
+                <div class="controls">
+                    <label>Talk Description:</label>
+                    <textarea class="form-control" ng-model="talk.desc"></textarea>
+                </div>
+            </div>
+            <div class="control-group form-group">
+                <div class="controls">
+                    <label>Talk Details:</label>  
+                    <ul class="list-unstyled">
+                        <li class="">
+                            <input class="form-control list-group-item " placeholder="Title" ng-model="name" />
+                            <br/>
+                            <input class="form-control list-group-item " placeholder="url" ng-model="url" />
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <button type="submit"  ng-click="updatetalk()" class="btn btn-primary">Update Talk</button>
+        </form>
     </div>
 </body>
 </html>

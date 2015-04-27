@@ -3,95 +3,127 @@
 <head>
     <title>Conference</title>
 </head>
-<body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Conference Admin Portal</a>
-            </div>
+<body>    
+    <div ng-include="'adminmenu.html'"></div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">Sign In</a></li>-->
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Register</a></li>
-                    <li><a href="#">Update</a></li>
-                    <li><a href="#">Register</a></li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
-    <h3>New Conference</h3>
-    <div class="control-group">
-        <!-- Username -->
-        <label class="control-label" for="username">Conference Name</label>
-        <div class="controls">
-            <input type="text" class="form-control" ng-model="cons.name" />
+
+<div class="container">
+    <h2>New Conference </h2>
+    <hr class="colorgraph">
+    <div class="row col-sm-offset-2 col-md-offset-2"> 
+        <!-- Conference Name -->
+        <div class="col-xs-10 col-sm-5 col-md-5 control-group">
+            <div class="form-group controls">
+                <input type="text" name="cons_name" id="cons_name" class="form-control input-lg" placeholder="Conference Name" tabindex="1" ng-model="cons.name">
+            </div>
+        </div>
+        <!-- Conference Date -->
+        <div class="col-xs-10 col-sm-5 col-md-5 control-group">
+            <div class="form-group controls">
+                <input type="text" name="cons_date" id="cons_date" class="form-control input-lg" placeholder="Conference Date [yyyy-mm-dd]" tabindex="2" ng-model="cons.confdate">
+            </div>
         </div>
     </div>
-    <div class="control-group">
-        <!-- Username -->
-        <label class="control-label" for="username">State</label>
+
+    <!-- About -->
+    <div class="col-xs-8 col-sm-offset-2 col-md-offset-2 form-group">
         <div class="controls">
-            <input id="geocomplete" type="text" class="form-control" ng-model="cons.state" />
+            <textarea name="about" id="about" class="form-control input-lg" placeholder="About" ng-model="cons.about" tabindex="3"></textarea>
         </div>
     </div>
-    <div class="control-group">
-        <!-- E-mail -->
-        <label class="control-label">About</label>
-        <div class="controls">
-            <textarea class="form-control" ng-model="cons.about"></textarea>
+    <div class="row col-sm-offset-2 col-md-offset-2"> 
+        <!-- City -->
+        <div class="col-xs-10 col-sm-5 col-md-5 control-group">
+            <div class="form-group controls">
+                <input type="text" name="city" id="city" class="form-control input-lg" placeholder="City" tabindex="4" ng-model="cons.city">
+            </div>
+        </div>
+        <!--State -->
+        <div class="col-xs-10 col-sm-5 col-md-5 control-group">
+            <div class="form-group controls">
+                <input type="text" name="state" id="state" class="form-control input-lg" placeholder="State" tabindex="5" ng-model="cons.state">
+            </div>
+        </div> 
+    </div>
+    <div class="col-xs-10 col-sm-offset-2 col-md-offset-2">
+        <button type="button" class="btn btn-labeled btn-warning" disabled>
+            <span class="btn-label"><i class="glyphicon glyphicon-bookmark"></i></span> &nbsp;&nbsp;Talk Name
+        </button>
+        <button class="btn btn-success" ng-click='addPathParam()'>
+            <span class="glyphicon glyphicon-plus"></span>
+        </button>
+        <br/>
+        <div class="row control-group" ng-repeat="talk in talks">
+            <br />
+            <div class="controls">
+                <div class="col-xs-12 col-sm-5 col-md-5">
+                    <div class="form-group controls">
+                        <input type="text" name="talk_name" id="talk_name" class="form-control input-lg" placeholder="Talk Name" tabindex="7" ng-model="talk.tname">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-5 col-md-5">
+                    <div class="form-group controls">
+                        <input type="text" name="talk_time" id="talk_time" class="form-control input-lg" placeholder="Time [hh:mm:ss]" tabindex="8" ng-model="talk.time">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-2 col-md-2">
+                    <button class="btn btn-danger" ng-click='removePathParam()'>
+                        <span class="glyphicon glyphicon-minus"></span>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="control-group">
-        <!-- Username -->
-        <label class="control-label" for="username">City</label>
-        <div class="controls">
-            <input id="geo" type="text" class="form-control" ng-model="cons.city" />
+
+    <br />
+    <br />
+    <div class="col-xs-10 col-sm-offset-2 col-md-offset-2">
+        <button type="button" class="btn btn-labeled btn-warning" disabled>
+            <span class="btn-label"><i class="glyphicon glyphicon-bookmark"></i></span> &nbsp;&nbsp;Sponsor
+        </button>
+        <button class="btn btn-success" ng-click='addspoParam()()'>
+            <span class="glyphicon glyphicon-plus"></span>
+        </button>
+            <div class="row control-group" ng-repeat="talk in sponsor">
+            <br />
+            <div class="controls">
+                <div class="col-xs-12 col-sm-5 col-md-5">
+                    <div class="form-group controls">
+                        <input type="text" name="sponsor_name" id="sponsor_name" class="form-control input-lg" placeholder="Sponsor Name" tabindex="11" ng-model="talk.name">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-5 col-md-5">
+                    <div class="form-group controls">
+                        <input type="text" name="sponsor_url" id="sponsor_url" class="form-control input-lg" placeholder="Sponsor URL" tabindex="11" ng-model="talk.url">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-2 col-md-2">
+                    <button class="btn btn-danger" ng-click='removespoParam()'>
+                        <span class="glyphicon glyphicon-minus"></span>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="control-group" ng-repeat="talk in talks">
-        <!-- Username -->
-        <label class="control-label" for="username">Talk Name</label>
-        <div class="controls">
-            <input type="text" class="form-control" ng-model="talk.tname" />
+
+
+
+
+     <hr class="colorgraph">
+
+    <div class="row">
+        <div class="control-group center-block">
+            <div class="col-xs-8 col-sm-4 col-md-4 col-sm-offset-4 col-md-offset-4 controls">
+                <input type="submit" value="Add Conference" class="btn btn-success center-block btn-primary btn-block btn-lg" ng-click="add(cons)" tabindex="20">
+            </div>
         </div>
     </div>
-    <div class="control-group" ng-repeat="talk in sponsor">
-        <!-- Username -->
-        <label class="control-label" for="username">Sponsor</label>
-        <div class="controls">
-            <input type="text" class="form-control" placeholder="Name" ng-model="talk.name" />
-            <input type="text" class="form-control" placeholder="url" ng-model="talk.url" />
-        </div>
-    </div>
-    <!-- Username -->
-    <button ng-click="add(cons)" class="btn btn-success pull-right">
-        <span class="glyphicon glyphicon-plus">Submit</span>
-    </button>
-    <button class="btn btn-danger" ng-click='removePathParam()'>
-        <span class="glyphicon glyphicon-minus">Delete Talk</span>
-    </button>
-    <button class="btn btn-success" ng-click='addPathParam()'>
-        <span class="glyphicon glyphicon-plus">Add Talk</span>
-    </button>
-    <button class="btn btn-danger" ng-click='removespoParam()'>
-        <span class="glyphicon glyphicon-minus">Sponsor Talk</span>
-    </button>
-    <button class="btn btn-success" ng-click='addspoParam()'>
-        <span class="glyphicon glyphicon-plus">Sponsor Talk</span>
-    </button>
-    <h3>Conference Details</h3>
+</div>
+
+
+<div class="container">  
+    <h2>Conference Details</h2>
+     <hr class="colorgraph">
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
@@ -114,7 +146,7 @@
                     {{con.city}}
                 </td>
                 <td>
-                    {{con.confdate}}
+                    {{con.confdate.split("T")[0]}}
                 </td>
                 <td>
                     <button ng-click="remove(con._id)" class="btn btn-danger pull-right">
@@ -124,15 +156,8 @@
             </tr>
         </tbody>
     </table>
-    <!--<script src="js/jquery.geocomplete.js"></script>
-    <script>
-        $(function () {
-            $("#geocomplete").geocomplete().bind("geoaddress:result", function (event, result) {
-                alert(result.formatted_address);
-            })});
-        $(function () {
-            $("#geo").geocomplete();
-        });
-    </script>-->
-</body>
+</div>
+
+    <div ng-include="'footer.html'"></div>
+  </body>
 </html>

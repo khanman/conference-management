@@ -5,25 +5,42 @@
     <link href="css/style.css" rel="stylesheet" />
 </head>
 <body>
+
+    <div ng-include="'usermenu.html'"></div>
+    <br/>
+    <br/>
     <div class="container">
-        <div class="row">
-            <div class="col-sm-6 col-md-4 col-md-offset-4">
-                <h1 class="text-center login-title">Sign in</h1>
-                <div class="account-wall">
-                    <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
-                         alt="">
-                    <div class="form-signin">
-                        <input class="form-control" ng-model="user.name">
-                        <input class="form-control" type="password" ng-model="user.password">
-                        <button class="btn btn-lg btn-primary btn-block" ng-click="login(user)">
-                            Sign in
-                        </button>
-                    </div>
+        <div class="col-xs-8 col-sm-4 col-md-4 col-sm-offset-4 col-md-offset-4">
+            <div class="panel panel-success">
+                <div class="panel-heading"><h4>Please Sign in</h4></div>
+                <div class="panel-body">
+                    <form role="form">
+                        <fieldset class="form-signin">
+                            
+                            <span class="glyphicon glyphicon-user icon-size center col-sm-offset-4 col-md-offset-4"></span>
+                            <hr class="colorgraph">
+                            <div class="form-group">
+                                <input type="text" name="username" id="username" class="form-control input-lg" placeholder="Username" ng-model="user.name">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" ng-model="user.password">
+                            </div>
+                            <hr class="colorgraph">
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <input type="submit" class="btn btn-lg btn-success btn-block" value="Sign In" ng-click="login(user)">
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <a href="#/register" class="btn btn-lg btn-primary btn-block">Register </a>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
                 </div>
-                <a href="#/register" class="text-center new-account">Create an account </a>
             </div>
         </div>
     </div>
+    
 </body>
 </html>
 

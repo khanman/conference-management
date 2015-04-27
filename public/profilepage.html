@@ -8,55 +8,137 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container" style="margin-top: 20px; margin-bottom: 20px;">
-        <div class="row panel">
-            <div class="col-md-4 bg_blur ">
 
-            </div>
-            <div class="col-md-8  col-xs-12">
-                <img src="" class="img-thumbnail picture hidden-xs" />
-                <img src="" class="img-thumbnail visible-xs picture_mob" />
-                <div class="header">
-                    <h1><input ng-model="user.name" /></h1>
+
+    <div ng-include="'usermenu.html'"></div>
+    <br/><br/>
+    <div class="container">
+        <div class="row profile">
+            <div class="col-md-3">
+                <div class="profile-sidebar">
+                    <!-- SIDEBAR USERPIC -->
+                    <div class="profile-userpic">
+                        <img height="300" class="img-responsive" src="uploads/{{user.photo}}" alt="" />
+                        <!--<img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">-->
+                    </div>
+                    <!-- END SIDEBAR USERPIC -->
+                    <!-- SIDEBAR USER TITLE -->
+                    <div class="profile-usertitle">
+                        <div class="profile-usertitle-name">
+                            {{user.firstname}} {{user.lastname}}
+                        </div>
+                    </div>
+                    <div class="control-group text-center center-block" ng-show='currentUser'>
+                        <button class="btn btn-success" ng-model="currentUser" ng-click=follow()>
+                            <span class="">Follow</span>
+                            <!-- <span ng-show="!visible" class="">not Following</span>-->
+                        </button>
+                    </div>
+                    <!-- END SIDEBAR USER TITLE -->
+
+                    <!-- SIDEBAR MENU -->
+                    <div class="profile-usermenu">
+                        <ul class="nav">
+                            <li>
+                                <a href="#/home/">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                    Search Conference
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#/Mytalks/">
+                                    <i class="glyphicon glyphicon-ok"></i>
+                                    My Talks
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- END MENU -->
+                    <div class="text-center center-block">
+                            <br />
+                                <a href="https://www.facebook.com/" target="_blank"><i id="social" class="fa fa-facebook-square fa-3x social-fb"></i></a>
+                                <a href="https://twitter.com/" target="_blank"><i id="social" class="fa fa-twitter-square fa-3x social-tw"></i></a>
+                                <a href="https://plus.google.com/" target="_blank"><i id="social" class="fa fa-google-plus-square fa-3x social-gp"></i></a>
+                                <a href="https://github.com/" target="_blank"><i id="social" class="fa fa-envelope-square fa-3x social-em"></i></a>
+                        </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">About</h3>
+                        </div>
+                        <div class="panel-body">{{user.about}}</div>
+                    </div>
+                   
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Interests</h3>
+                        </div>
+                        <div class="panel-body">{{user.interest}}</div>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Following</h3>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="nav" ng-repeat="follow in user.following">
+                                <li>
+                                    <a href="#/profile/{{follow._id}}">
+                                        <i class="glyphicon glyphicon-user"></i>
+                                        {{follow.name}}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row nav">
-            <div class="col-md-4"></div>
-            <div class="col-md-8 col-xs-12" style="margin: 0px;padding: 0px;">
-                <!--<div class="control-group" ng-show='currentUser'>
-                    <button class="btn btn-success" ng-model="currentUser" ng-click='follow()'>
-                        <span class="">Follow</span>
-                        <span ng-show="!visible" class="">not Following</span>
-                    </button>
-                </div>-->
-                <!--<div class="col-md-4 col-xs-4 well"><i class="fa fa-weixin fa-lg"></i> 16</div>
-                <div class="col-md-4 col-xs-4 well"><i class="fa fa-heart-o fa-lg"></i> 14</div>
-                <div class="col-md-4 col-xs-4 well"><i class="fa fa-thumbs-o-up fa-lg"></i> 26</div>-->
+
+            <div class="col-sm-9" style="" contenteditable="false">
+                <div class="panel panel-primary target">
+                    <div class="panel-heading" contenteditable="false">Conferences Presented</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4" ng-repeat="conf in user.c_Presented">
+                                <div class="thumbnail">
+                                    <img src="http://placehold.it/500x150/4AB0D9/ffffff&text={{conf.pName}}">
+                                    <div class="caption">
+                                        <h3>
+                                        <a href="#/conference/{{conf._id}}">
+                                            {{conf.pName}}
+                                        </a>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-primary target">
+                    <div class="panel-heading" contenteditable="false">Talks Presented</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4" ng-repeat="talks in user.talk_presented">
+                                <div class="thumbnail">
+                                    <img src="http://placehold.it/500x100/0B8055/ffffff&text={{talks.talkname}}">
+                                    <div class="caption">
+                                        <h3>
+                                        <a href="#/Mytalks/{{talk._id}}">
+                                            {{talks.talkname}}
+                                        </a>
+                                        </h3>
+                                        <p>
+                                            {{ talks.desc | limitTo: 50 }}{{talks.desc.length > 50 ? '...' : ''}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="push"></div>
             </div>
-        </div>
-        <table>
-            <tbody>
-                <tr>
-                    <td>city</td>
-                    <td>{{user.city}}</td>
-                </tr>
-                <tr>
-                    <td>state</td>
-                    <td>{{user.state}}</td>
-                <tr>
-                    <td>country</td>
-                    <td>{{user.country}}</td>
-                </tr>
-                <tr>
-                    <td>Photo</td>
-                    <td>{{user.photo}}</td>
-                </tr>
-            </tbody>
-        </table>
-        <h2><input ng-model="user.about" /></h2>
-
-
     </div>
+</div>
+    <div ng-include="'footer.html'"></div>
 </body>
 </html>

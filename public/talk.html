@@ -1,101 +1,158 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
 </head>
 <body>
+    <div ng-include="'usermenu.html'"></div>
+    <br/><br/>
     <div class="container">
-        {{talk.P_name}}
-        <h4>Talk Details</h4>
-        <div>
-            <div class="control-group" ng-show='currentUser'>
-                <button class="btn btn-success" ng-model="currentUser" ng-click='attend()'>
-                    <span class="">Attend</span>
-                </button>
-            </div>
-            {{currentUser}}
-            <table class="table table-striped table-bordered">
-                <tbody>
-                    <tr>
-                        <td>Talk Name</td>
-                        <td>
-                            {{talk.tname}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Description</td>
-                        <td>
-                            {{talk.desc}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Presenter</td>
-                        <td>
-                            <ul class="list-unstyled">
-                                <li class="" ng-repeat="p in talk.P_name">
-                                    <ul class="list-unstyled">
-                                        <li class="">
-                                            <a href="#/profile/{{p._id}}">{{p.tp}}</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Slides/Data</td>
-                        <td>
-                            <ul class="list-unstyled">
-                                <li class="" ng-repeat="p in talk.slides">
-                                    <ul class="list-unstyled">
-                                        <li class="">
-                                            {{p.name}}
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Attendee</td>
-                        <td>
-                            <ul class="list-unstyled">
-                                <li class="" ng-repeat="p in talk.a_name">
-                                    <ul class="list-unstyled">
-                                        <li class="">
-                                            <a href="#profile/{{p._id}}">{{p.ta_name}}</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Review</td>
-                        <td>
-                            <ul class="list-unstyled">
-                                <li class="" ng-repeat="p in talk.review">
-                                    <ul class="list-unstyled">
-                                        <li class="">
-                                            {{p.comment}}
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="control-group" ng-show='currentUser'>
-                <label class="control-label">Comment</label>
-                <div class="controls">
-                    <textarea class="form-control" ng-model="newcomment" placeholder="enter your text here"></textarea>
-                </div>
-                <button class="btn btn-success" ng-click='postReview()'>
-                    <span class="glyphicon glyphicon-plus"></span>
-                </button>
+        <h3>Talk Details</h3>
+        <hr class="colorgraph">
+        <div class="col-md-4">
+            <h3>Talk Name : {{talk.tname}}</h3>
+            <a href="#/Mytalks/{{talk._id}}">
+                <img class="img-responsive img-hover" src="http://placehold.it/700x400" alt="">
+            </a>
+        </div>
+        <div class="col-md-4">
+            <h3>Talk Description</h3>
+            <p>{{talk.desc}}</p>
+            <h3>Presenter</h3>
+            <ul class="list-unstyled">
+                <li class="" ng-repeat="p in talk.P_name">
+                    <ul class="list-unstyled">
+                        <li class="">                            
+                            <a href="#/profile/{{p._id}}"><img class="img-responsive img-hover" src="" alt=""> {{p.tp}}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <h3>Attendees</h3>
+            <ul class="list-unstyled">
+                <li class="" ng-repeat="p in talk.a_name">
+                    <ul class="list-unstyled">
+                        <li class="">                            
+                            <a href="#/profile/{{p._id}}"><img class="img-responsive img-hover" src="" alt=""> {{p.ta_name}}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <h3>Slides/Data</h3>
+            <ul class="list-unstyled">
+                <li class="" ng-repeat="p in talk.slides">
+                    <ul class="list-unstyled">
+                        <li class="">
+                            {{p.name}}
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class='col-md-4'></div>
+        <div class='col-md-4 control-group' ng-show='currentUser'>
+            <div class="panel panel-success">
+                <div class="panel-heading">Please Pay to Attend</div>
+                <div class="panel-body">
+                    <div class='form-row'>
+                      <div class='col-xs-12 form-group required'>
+                        <label class='control-label'>Name on Card</label>
+                        <input class='form-control' size='4' type='text'>
+                      </div>
+                    </div>
+                    <div class='form-row'>
+                      <div class='col-xs-12 form-group card required'>
+                        <label class='control-label'>Card Number</label>
+                        <input autocomplete='off' class='form-control card-number' size='20' type='text' ng-model="payment.cardno">
+                      </div>
+                    </div>
+                    <div class='form-row'>
+                      <div class='col-xs-4 form-group cvc required'>
+                        <label class='control-label'>CVC</label>
+                        <input autocomplete='off' class='form-control card-cvc' placeholder='ex. 311' size='4' type='text' ng-model="payment.cvv" >
+                      </div>
+                      <div class='col-xs-4 form-group expiration required'>
+                        <label class='control-label'>Expiration</label>
+                        <input class='form-control card-expiry-month' placeholder='MM' size='2' type='text'>
+                      </div>
+                      <div class='col-xs-4 form-group expiration required'>
+                        <label class='control-label'> </label>
+                        <input class='form-control card-expiry-year' placeholder='YYYY' size='4' type='text'>
+                      </div>
+                    </div>
+                    <div class='form-row'>
+                      <div class='col-md-12'>
+                        <div class='form-control total btn btn-info'>
+                          Total:
+                          <span class='amount'>$15</span>
+                        </div>
+                      </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div class='form-row'>
+                      <div class='col-md-12 form-group'>
+                        <button class='form-control btn btn-primary submit-button' ng-model="currentUser" ng-click='attend(payment)'>Pay »</button>
+                      </div>
+                    </div>
+                    <div class='form-row'>
+                      <div class='col-md-12 error form-group hide'>
+                        <div class='alert-danger alert'>
+                          Please correct the errors and try again.
+                        </div>
+                      </div>
+                    </div>
+              </div>
             </div>
         </div>
+        <div class='col-md-4'></div>
     </div>
+    <div class="container">
+        <br/>
+        <h4>Reviews</h4>
+    <hr class="colorgraph">
+    </div>
+
+    <div class="container">
+        <div>
+            <div class="control-group" ng-show='currentUser'>
+                <label class="control-label">Comments</label>
+                <div class="col-sm-1">
+                    <div class="thumbnail">
+                        <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                    </div><!-- /thumbnail -->
+                </div><!-- /col-sm-1 -->
+                <div class="controls" class="col-md-10">
+                    <textarea class="form-control" ng-model="newcomment" placeholder="Enter your comments"></textarea>
+                </div>
+                <br/>
+                <button class="btn btn-success" ng-click='postReview()'>
+                    Submit Comment
+                </button>
+            </div>
+            <h4>Previous comments</h4><br/>
+            <div class="row" ng-repeat="p in talk.review">
+                <div class="col-sm-1">
+                    <div class="thumbnail">
+                        <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                    </div><!-- /thumbnail -->
+                </div><!-- /col-sm-1 -->
+                <div class="col-sm-10">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <strong>{{p.name}}</strong>
+                        </div>
+                        <div class="panel-body">                            
+                            {{p.comment}} 
+                        </div><!-- /panel-body -->
+                    </div><!-- /panel panel-default -->
+                </div><!-- /col-sm-5 -->
+            </div><!-- /panel panel-default -->
+
+        </div>
+    </div>
+    
+    <div ng-include="'footer.html'"></div>
 </body>
 </html>
