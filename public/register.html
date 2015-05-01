@@ -7,144 +7,146 @@
 </head>
 <body>
     <div ng-include="'usermenu.html'"></div>
+        <div class="container">
+            <h2>Please Sign Up </h2>
+            <hr class="colorgraph">
+            <form>
 
-    <div class="container">
-        <h2>Please Sign Up </h2>
-        <hr class="colorgraph">
-        <div class="row col-sm-offset-2 col-md-offset-2">
-            <!-- First Name -->
-            <div class="col-xs-10 col-sm-5 col-md-5 control-group">
-                <div class="form-group controls">
-                    <input type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1" ng-model="users.firstname">
-                </div>
-            </div>
-            <!-- Last Name -->
-            <div class="col-xs-10 col-sm-5 col-md-5 control-group">
-                <div class="form-group controls">
-                    <input type="text" name="last_name" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2" ng-model="users.lastname">
-                </div>
-            </div>
-        </div>
-
-        <div class="row col-sm-offset-2 col-md-offset-2">
-            <!-- Username -->
-            <div class="col-xs-10 col-sm-5 col-md-5 control-group">
-                <div class="form-group controls">
-                    <input type="text" name="user_name" id="user_name" class="form-control input-lg" placeholder="User Name" tabindex="3" ng-model="users.name">
-                </div>
-            </div>
-            <!--Password -->
-            <div class="col-xs-10 col-sm-5 col-md-5 control-group">
-                <div class="form-group controls">
-                    <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="4" ng-model="users.password">
-                </div>
-            </div>
-        </div>
-
-        <!-- E-mail -->
-        <div class="col-xs-8 col-sm-offset-2 col-md-offset-2 form-group">
-            <div class="controls">
-                <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="5" ng-model="users.email">
-            </div>
-        </div>
-        <div class="row col-sm-offset-2 col-md-offset-2">
-            <!-- City -->
-            <div class="col-xs-9 col-sm-3 col-md-3 control-group">
-                <div class="form-group controls">
-                    <input type="text" name="city" id="city" class="form-control input-lg" placeholder="City" tabindex="6" ng-model="users.city">
-                </div>
-            </div>
-            <!--State -->
-            <div class="col-xs-9 col-sm-3 col-md-3 control-group">
-                <div class="form-group controls">
-                    <input type="text" name="state" id="state" class="form-control input-lg" placeholder="State" tabindex="7" ng-model="users.state">
-                </div>
-            </div>
-            <!--Country -->
-            <div class="col-xs-9 col-sm-3 col-md-3 control-group">
-                <div class="form-group controls">
-                    <input type="text" name="country" id="country" class="form-control input-lg" placeholder="Country" tabindex="8" ng-model="users.country">
-                </div>
-            </div>
-        </div>
-        <!-- About -->
-        <div class="col-xs-8 form-group col-sm-offset-2 col-md-offset-2">
-            <div class="controls">
-                <textarea name="about" id="about" class="form-control input-lg" placeholder="About" ng-model="users.about" tabindex="9"></textarea>
-            </div>
-        </div>
-        <!-- Interest -->
-        <div class="col-xs-8 form-group col-sm-offset-2 col-md-offset-2">
-            <div class="controls">
-                <input name="interest" id="interest" class="form-control input-lg" placeholder="Interest" ng-model="users.interest" tabindex="10">
-            </div>
-        </div>
-
-        <div class="row col-sm-offset-2 col-md-offset-2">
-            <!-- Facebook Link -->
-            <div class="col-xs-10 col-sm-5 col-md-5 control-group">
-                <div class="form-group controls">
-                    <input type="text" name="fb_link" id="fb_link" class="form-control input-lg" placeholder="Facebook Link" tabindex="11" ng-model="users.fb">
-                </div>
-            </div>
-            <!-- GitHub Link -->
-            <div class="col-xs-10 col-sm-5 col-md-5 control-group">
-                <div class="form-group controls">
-                    <input type="text" name="git_link" id="git_link" class="form-control input-lg" placeholder="GitHub Link" tabindex="12" ng-model="users.github">
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-10 col-sm-offset-2 col-md-offset-2">
-            <input type="file" file-model="myFile" />
-            <br />
-            <div class="col-xs-10 col-sm-2 col-md-2">
-                <button class="btn btn-success" ng-click="uploadFile()">upload me</button>
-            </div>
-        </div>
-        <div class="col-xs-10 col-sm-offset-2 col-md-offset-2">
-            <br />
-            <button type="button" class="btn btn-labeled btn-warning" disabled>
-                <span class="btn-label"><i class="glyphicon glyphicon-bookmark"></i></span> &nbsp;&nbsp;Upload Paper
-            </button>
-            <button class="btn btn-success" ng-click='addPathParam()'>
-                <span class="glyphicon glyphicon-plus"></span>
-            </button>
-            <div class="row control-group" ng-repeat="paper in papers">
-                <br />
-                <!-- Facebook Link -->
-                <div class="controls">
-                    <div class="col-xs-10 col-sm-5 col-md-5">
+                <div class="row col-sm-offset-2 col-md-offset-2">
+                    <!-- First Name -->
+                    <div class="col-xs-10 col-sm-5 col-md-5 control-group">
                         <div class="form-group controls">
-                            <input type="text" name="paper_title" id="paper_title" class="form-control input-lg" placeholder="Paper Title" tabindex="11" ng-model="paper.name">
+                            <input type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1" ng-model="users.firstname" required>
                         </div>
                     </div>
-                    <!-- GitHub Link -->            <!-- Facebook Link -->
-                    <div class="col-xs-10 col-sm-5 col-md-5">
+                    <!-- Last Name -->
+                    <div class="col-xs-10 col-sm-5 col-md-5 control-group">
                         <div class="form-group controls">
-                            <input type="text" name="paper_url" id="paper_url" class="form-control input-lg" placeholder="Paper Url" tabindex="11" ng-model="paper.url">
+                            <input type="text" name="last_name" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2" ng-model="users.lastname" required>
                         </div>
                     </div>
-                    <div class="col-xs-10 col-sm-2 col-md-2">
-                        <button class="btn btn-danger" ng-click='removePathParam()'>
-                            <span class="glyphicon glyphicon-minus"></span>
-                        </button>
+                </div>
+
+                <div class="row col-sm-offset-2 col-md-offset-2">
+                    <!-- Username -->
+                    <div class="col-xs-10 col-sm-5 col-md-5 control-group">
+                        <div class="form-group controls">
+                            <input type="text" name="user_name" id="user_name" class="form-control input-lg" placeholder="User Name" tabindex="3" ng-model="users.name" required>
+                        </div>
                     </div>
+                    <!--Password -->
+                    <div class="col-xs-10 col-sm-5 col-md-5 control-group">
+                        <div class="form-group controls">
+                            <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="4" ng-model="users.password" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- E-mail -->
+                <div class="col-xs-8 col-sm-offset-2 col-md-offset-2 form-group">
+                    <div class="controls">
+                        <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="5" ng-model="users.email" required>
+                    </div>
+                </div>
+                <div class="row col-sm-offset-2 col-md-offset-2">
+                    <!-- City -->
+                    <div class="col-xs-9 col-sm-3 col-md-3 control-group">
+                        <div class="form-group controls">
+                            <input type="text" name="city" id="city" class="form-control input-lg" placeholder="City" tabindex="6" ng-model="users.city" required>
+                        </div>
+                    </div>
+                    <!--State -->
+                    <div class="col-xs-9 col-sm-3 col-md-3 control-group">
+                        <div class="form-group controls">
+                            <input type="text" name="state" id="state" class="form-control input-lg" placeholder="State" tabindex="7" ng-model="users.state" required>
+                        </div>
+                    </div>
+                    <!--Country -->
+                    <div class="col-xs-9 col-sm-3 col-md-3 control-group">
+                        <div class="form-group controls">
+                            <input type="text" name="country" id="country" class="form-control input-lg" placeholder="Country" tabindex="8" ng-model="users.country" required>
+                        </div>
+                    </div>
+                </div>
+                <!-- About -->
+                <div class="col-xs-8 form-group col-sm-offset-2 col-md-offset-2">
+                    <div class="controls">
+                        <textarea name="about" id="about" class="form-control input-lg" placeholder="About" ng-model="users.about" tabindex="9" required></textarea>
+                    </div>
+                </div>
+                <!-- Interest -->
+                <div class="col-xs-8 form-group col-sm-offset-2 col-md-offset-2">
+                    <div class="controls">
+                        <input name="interest" id="interest" class="form-control input-lg" placeholder="Interest" ng-model="users.interest" tabindex="10">
+                    </div>
+                </div>
+
+                <div class="row col-sm-offset-2 col-md-offset-2">
+                    <!-- Facebook Link -->
+                    <div class="col-xs-10 col-sm-5 col-md-5 control-group">
+                        <div class="form-group controls">
+                            <input type="text" name="fb_link" id="fb_link" class="form-control input-lg" placeholder="Facebook Link" tabindex="11" ng-model="users.fb" required>
+                        </div>
+                    </div>
+                    <!-- GitHub Link -->
+                    <div class="col-xs-10 col-sm-5 col-md-5 control-group">
+                        <div class="form-group controls">
+                            <input type="text" name="git_link" id="git_link" class="form-control input-lg" placeholder="GitHub Link" tabindex="12" ng-model="users.github" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-10 col-sm-offset-2 col-md-offset-2">
+                    <input type="file" file-model="myFile" />
                     <br />
+                    <div class="col-xs-10 col-sm-2 col-md-2">
+                        <button class="btn btn-success" ng-click="uploadFile()">upload me</button>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="control-group center-block">
-                <div class="col-xs-12">
-                    <hr class="colorgraph">
+                <div class="col-xs-10 col-sm-offset-2 col-md-offset-2">
+                    <br />
+                    <button type="button" class="btn btn-labeled btn-warning" disabled>
+                        <span class="btn-label"><i class="glyphicon glyphicon-bookmark"></i></span> &nbsp;&nbsp;Upload Paper
+                    </button>
+                    <button class="btn btn-success" ng-click='addPathParam()'>
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                    <div class="row control-group" ng-repeat="paper in papers">
+                        <br />
+                        <!-- Facebook Link -->
+                        <div class="controls">
+                            <div class="col-xs-10 col-sm-5 col-md-5">
+                                <div class="form-group controls">
+                                    <input type="text" name="paper_title" id="paper_title" class="form-control input-lg" placeholder="Paper Title" tabindex="11" ng-model="paper.name">
+                                </div>
+                            </div>
+                            <!-- GitHub Link -->            <!-- Facebook Link -->
+                            <div class="col-xs-10 col-sm-5 col-md-5">
+                                <div class="form-group controls">
+                                    <input type="text" name="paper_url" id="paper_url" class="form-control input-lg" placeholder="Paper Url" tabindex="11" ng-model="paper.url">
+                                </div>
+                            </div>
+                            <div class="col-xs-10 col-sm-2 col-md-2">
+                                <button class="btn btn-danger" ng-click='removePathParam()'>
+                                    <span class="glyphicon glyphicon-minus"></span>
+                                </button>
+                            </div>
+                            <br />
+                        </div>
+                    </div>
                 </div>
-                <div class="col-xs-8 col-sm-4 col-md-4 col-sm-offset-4 col-md-offset-4">
-                    <input type="submit" value="Register" class="btn btn-success center-block btn-primary btn-block btn-lg" ng-click="register(users)" tabindex="20">
+                <div class="row">
+                    <div class="control-group center-block">
+                        <div class="col-xs-12">
+                            <hr class="colorgraph">
+                        </div>
+                        <div class="col-xs-8 col-sm-4 col-md-4 col-sm-offset-4 col-md-offset-4">
+                            <input type="submit" value="Register" class="btn btn-success center-block btn-primary btn-block btn-lg" ng-click="register(users)" tabindex="20">
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
+            </form>
+</div>
+    
     <div ng-include="'footer.html'"></div>
 </body>
 </html>

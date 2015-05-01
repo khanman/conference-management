@@ -75,14 +75,14 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider',
         });
       $httpProvider
     .interceptors
-    .push(function ($q, $location) {
+    .push(function ($q, $location,$rootScope) {
         return {
             response: function (response) {
                 return response;
             },
             responseError: function (response) {
                 if (response.status === 401)
-                    alert("username or password wrong")
+                    $rootScope.loginError = "Incorrect username or password";
                     $location.url('/login');
                 return $q.reject(response);
             }

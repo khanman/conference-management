@@ -16,14 +16,13 @@
                 <div class="panel-body">
                     <form role="form">
                         <fieldset class="form-signin">
-                            
                             <span class="glyphicon glyphicon-user icon-size center col-sm-offset-4 col-md-offset-4"></span>
                             <hr class="colorgraph">
                             <div class="form-group">
-                                <input type="text" name="username" id="username" class="form-control input-lg" placeholder="Username" ng-model="user.name">
+                                <input type="text" name="username" id="username" class="form-control input-lg" placeholder="Username" ng-model="user.name" required>
                             </div>
                             <div class="form-group">
-                                <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" ng-model="user.password">
+                                <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" ng-model="user.password" required>
                             </div>
                             <hr class="colorgraph">
                             <div class="row">
@@ -33,6 +32,12 @@
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <a href="#/register" class="btn btn-lg btn-primary btn-block">Register </a>
                                 </div>
+                            </div>
+                            <br>
+                            <div class="form-group alert alert-warning" role="alert" ng-show="loginError">
+                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                <span class="sr-only">Error:</span>
+                                {{loginError}}
                             </div>
                         </fieldset>
                     </form>
