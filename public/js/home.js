@@ -1,3 +1,7 @@
+/**
+ * Mansoor Ahmed Khan
+ *
+**/
 function slideSwitch() {
     var $active = $('#slideshow IMG.active');
 

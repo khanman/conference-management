@@ -6,10 +6,8 @@
     </script>
 </head>
 <body>
-
-   
     <div ng-include="'usermenu.html'"></div>
-  
+
     <div class="container">
         <h2>Please Sign Up </h2>
         <hr class="colorgraph">
@@ -28,7 +26,7 @@
             </div>
         </div>
 
-        <div class="row col-sm-offset-2 col-md-offset-2">            
+        <div class="row col-sm-offset-2 col-md-offset-2">
             <!-- Username -->
             <div class="col-xs-10 col-sm-5 col-md-5 control-group">
                 <div class="form-group controls">
@@ -36,7 +34,7 @@
                 </div>
             </div>
             <!--Password -->
-            <div class="col-xs-10 col-sm-5 col-md-5 control-group">                
+            <div class="col-xs-10 col-sm-5 col-md-5 control-group">
                 <div class="form-group controls">
                     <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="4" ng-model="users.password">
                 </div>
@@ -61,7 +59,7 @@
                 <div class="form-group controls">
                     <input type="text" name="state" id="state" class="form-control input-lg" placeholder="State" tabindex="7" ng-model="users.state">
                 </div>
-            </div>            
+            </div>
             <!--Country -->
             <div class="col-xs-9 col-sm-3 col-md-3 control-group">
                 <div class="form-group controls">
@@ -98,12 +96,13 @@
         </div>
         <div class="col-xs-10 col-sm-offset-2 col-md-offset-2">
             <input type="file" file-model="myFile" />
-            <br/>
-            <button ng-click="uploadFile()">upload me</button>
-            <br/>
+            <br />
+            <div class="col-xs-10 col-sm-2 col-md-2">
+                <button class="btn btn-success" ng-click="uploadFile()">upload me</button>
+            </div>
         </div>
         <div class="col-xs-10 col-sm-offset-2 col-md-offset-2">
-            <br/>
+            <br />
             <button type="button" class="btn btn-labeled btn-warning" disabled>
                 <span class="btn-label"><i class="glyphicon glyphicon-bookmark"></i></span> &nbsp;&nbsp;Upload Paper
             </button>
@@ -145,7 +144,7 @@
             </div>
         </div>
     </div>
-    
+
     <div ng-include="'footer.html'"></div>
 </body>
 </html>

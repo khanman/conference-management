@@ -1,4 +1,8 @@
-﻿var app = angular.module("ConferenceApp", ["ngRoute", "ui.router"]);
+﻿/**
+ * Mansoor Ahmed Khan
+ *
+**/
+var app = angular.module("ConferenceApp", ["ngRoute", "ui.router"]);
 
 app.config(['$routeProvider', '$locationProvider', '$httpProvider',
   function ($routeProvider, $locationProvider, $httpProvider) {
@@ -128,5 +132,4 @@ app.controller("SearchController", function ($scope, $http, SearchService) {
             $scope.conf = response;
         });
     }
-    //$scope.currentPath = $location.path();
 });

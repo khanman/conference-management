@@ -1,4 +1,8 @@
-﻿app.factory('MyTalkService', function ($http) {
+﻿/**
+ * Mansoor Ahmed Khan
+ *
+**/
+app.factory('MyTalkService', function ($http) {
     var findConf = function (callback) {
         $http.get("/rest/conference")
         .success(callback);

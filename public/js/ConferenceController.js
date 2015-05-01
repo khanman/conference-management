@@ -1,5 +1,7 @@
-﻿//var app = angular.module("ConferenceApp", []);
-
+﻿/**
+ * Mansoor Ahmed Khan
+ *
+**/
 app.factory('ConferenceService', function ($http) {
     var findConf = function (confid, callback) {
         $http.get("/rest/conference/" + confid)

@@ -1,4 +1,8 @@
-﻿app.factory('SecureService', function SecureService($rootScope, $http, $routeParams, $location) {
+﻿/**
+ * Mansoor Ahmed Khan
+ *
+**/
+app.factory('SecureService', function SecureService($rootScope, $http, $routeParams, $location) {
     var login = function (user, callback) {
         console.log(user);
         $http.post("/login", user)
@@ -27,16 +31,8 @@
 
 app.controller("LoginController", function ($rootScope, $scope, $http, $routeParams, $location, SecureService) {
     $scope.login = function (user) {
-        SecureService.login(user, function (response) {
-            console.log("chgvjhbklvcgjvkl;" + response)
-            //if (response.message == "Incorrect") {
-            //    $rootScope.currentUser = null;
-            //    alert("Wrong username and password")
-            //    $location.url('/login')
-            //    }
-            //else {
+        SecureService.login(user, function (response) {           
             $location.url('/profile');
-            //}
         });
     }
 

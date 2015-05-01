@@ -1,4 +1,8 @@
-﻿app.directive('fileModel', ['$parse', function ($parse) {
+﻿/**
+ * Mansoor Ahmed Khan
+ *
+**/
+app.directive('fileModel', ['$parse', function ($parse) {
     return {
         restrict: 'A',
         link: function (scope, element, attrs) {
@@ -26,8 +30,6 @@ app.service('fileUpload', ['$http', function ($http) {
     }
 }]);
 
-
-
 app.factory('ProfileService', function ProfileService($http, $rootScope, $location) {
     var findUser = function (userid, callback) {
         $http.get("/rest/userprofile/" + userid)
@@ -53,7 +55,6 @@ app.controller("ProfileController", function ($scope, fileUpload, $http, $rootSc
     var user;
     var following = [];
     var papers = []
-
     ProfileService.findUser(userid, function (response) {
         console.log(response)
         $scope.user = response;
@@ -61,10 +62,11 @@ app.controller("ProfileController", function ($scope, fileUpload, $http, $rootSc
     
     $scope.follow = function () {
         var flag = false;
+
         for (var j = 0; j < $scope.currentUser.following.length; j++) {
             if ($scope.currentUser.following[j].name === $scope.user.name) {
                 flag = true;
-                alert("Following already")
+                alert("Following already");
                 break;
             }
         } if (!flag) {

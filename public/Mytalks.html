@@ -21,16 +21,17 @@
         <div class="row">
             <div class="col-md-4" ng-repeat="talk in currentUser.talk_presented">
                 <div class="panel panel-success">
-                    <div class="panel-heading">{{talk.talkname}}</div>
+                    <div class="panel-heading"><a href="#/Mytalks/{{talk._id}}">{{talk.talkname}}</a></div>
                     <div class="panel-body">
-
-                        <a href="#/Mytalks/{{talk._id}}">
-                            <img class="img-responsive img-hover" src="http://placehold.it/700x400" alt="">
-                        </a>
-                        <h3>
+                        <p>{{ talk.desc | limitTo: 150 }}{{talk.desc.length > 80 ? '...' : ''}}</p>
+                        <!--<a href="#/Mytalks/{{talk._id}}">-->
+                            <!--<img class="img-responsive img-hover" src="http://placehold.it/500x150/4AB0D9/ffffff&text={{talk.talkname}}" alt="">-->
+                            <!--{{ talk.desc | limitTo: 80 }}{{talk.desc.length > 80 ? '...' : ''}}
+                        </a>-->
+                        <!--<h3>
                             <a href="#/Mytalks/{{talk._id}}">{{talk.talkname}}</a>
-                        </h3>
-                        <p>{{ talk.desc | limitTo: 80 }}{{talk.desc.length > 80 ? '...' : ''}}</p>
+                        </h3>-->
+                        <!--<p>{{ talk.desc | limitTo: 80 }}{{talk.desc.length > 80 ? '...' : ''}}</p>-->
                     </div>
                 </div>
             </div>

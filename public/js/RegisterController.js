@@ -1,4 +1,8 @@
-﻿app.directive('fileModel', ['$parse', function ($parse) {
+﻿/**
+ * Mansoor Ahmed Khan
+ *
+**/
+app.directive('fileModel', ['$parse', function ($parse) {
     return {
         restrict: 'A',
         link: function (scope, element, attrs) {

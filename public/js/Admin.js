@@ -1,4 +1,8 @@
-﻿
+﻿/**
+ * Mansoor Ahmed Khan
+ *
+**/
+
 app.factory('AdminService', function ($http) {
     var findAll = function (callback) {
         $http.get("/rest/conference")
@@ -61,11 +65,13 @@ app.controller("AdminConferenceController", function ($scope, $http, $routeParam
         });
     }
     $scope.add = function (cons) {
-        cons.talks = $scope.talks
-        cons.sponsor = $scope.sponsor
-        AdminService.create(cons, function (response) {
-            $scope.conf = response;
-        });
+        if (cons != null) {
+            cons.talks = $scope.talks
+            cons.sponsor = $scope.sponsor
+            AdminService.create(cons, function (response) {
+                $scope.conf = response;
+            });
+        }
     }
     $scope.update = function (con, _id, callback) {
         AdminService.edit(con, _id, function (response) {

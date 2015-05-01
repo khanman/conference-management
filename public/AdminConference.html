@@ -5,71 +5,72 @@
 </head>
 <body>
     <div ng-include="'adminmenu.html'"></div>
-  
+
     <div class="container">
-        <h1>Conference Admin Portal</h1>
-                <ol class="breadcrumb">
-                    <li><a href="#/admin">Admin Home</a>
-                    </li>
-                    <li class="active">Conference Details</li>
-                </ol>
+        <h1>Conference Details</h1>
+        <ol class="breadcrumb">
+            <li>
+                <a href="#/admin">Admin Home</a>
+            </li>
+            <li class="active">Conference Details</li>
+        </ol>
         <hr>
         <div ng-repeat="con in confbyid">
-                  <div class="row">
-            <div class="col-md-12">
-                <h3>Conference Details</h3>
-            <hr class="colorgraph">
-                <form name="sentMessage" id="contactForm">
-                    <div class="control-group form-group">
-                        <div class="controls">
-                            <label>Conference Name:</label>
-                            <input type="text" class="form-control" ng-model="con.name" />
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Conference Details</h3>
+                    <hr class="colorgraph">
+                    <form name="sentMessage" id="contactForm">
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label>Conference Name:</label>
+                                <input type="text" class="form-control" ng-model="con.name" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="control-group form-group">
-                        <div class="controls">
-                            <label>About:</label>
-                            <textarea class="form-control" ng-model="con.about"></textarea>
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label>About:</label>
+                                <textarea class="form-control" ng-model="con.about"></textarea>
+                            </div>
                         </div>
-                    </div>
-                    <div class="control-group form-group">
-                        <div class="controls">
-                            <label>City:</label>
-                            <input class="form-control" ng-model="con.city" />
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label>City:</label>
+                                <input class="form-control" ng-model="con.city" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="control-group form-group">
-                        <div class="controls">
-                            <label>State:</label>
-                            <input class="form-control" ng-model="con.state" />
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label>State:</label>
+                                <input class="form-control" ng-model="con.state" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="control-group form-group">
-                        <div class="controls">
-                            <label>Country:</label>
-                            <input class="form-control" ng-model="con.country" />
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label>Country:</label>
+                                <input class="form-control" ng-model="con.country" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="control-group form-group">
-                        <div class="controls">
-                            <label>Talk Name:</label>
-                            <ul class="list-unstyled">
-                                <li class="" ng-repeat="tak in con.talks">
-                                    <a href="#/admintalk/{{con._id}}/{{tak._id}}">{{tak.tname}}</a>
-                                </li>
-                            </ul>
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label>Talk Name:</label>
+                                <ul class="list-unstyled">
+                                    <li class="" ng-repeat="tak in con.talks">
+                                        <a href="#/admintalk/{{con._id}}/{{tak._id}}">{{tak.tname}}</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <!-- For success/fail messages -->
-                    <button type="submit" ng-click="update(con,con._id)" class="btn btn-primary">Update Conference</button>
-                </form>
-            </div>
+                        <!-- For success/fail messages -->
+                        <button type="submit" ng-click="update(con,con._id)" class="btn btn-primary">Update Conference</button>
+                    </form>
+                </div>
 
-        </div>
-        <!-- /.row -->
+            </div>
+            <!-- /.row -->
         </div>
     </div>
-    
+
     <div ng-include="'footer.html'"></div>
 </body>
 </html>

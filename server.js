@@ -116,36 +116,6 @@ var PaymentSchema = new mongoose.Schema({
 var Payment = mongoose.model('Payment', PaymentSchema);
 var imgPath = 'C:\Users/MansoorAhmed/mk/public/images/DS.png';
  
-//var schema = new mongoose.Schema({
-//    img: { data: Buffer, contentType: String }
-//});
-
-//// our model
-//var A = mongoose.model('A', schema);
-//var a = new A;
-//a.img.data = fs.readFileSync(imgPath);
-//a.img.contentType = 'image/png';
-//a.save(function (err, a) {
-//    if (err) throw err;
- 
-//    console.error('saved img to mongo');
-//});
-
-//login
-//passport.use(new LocalStrategy({
-//    usernameField: 'name',
-//    passwordField: 'password'
-//},
-//function (name, password, done) {
-//    User.findOne({ name: name, password: password }).exec(function (err, user) {
-//        if (err) { return done(err); }
-//        if (!user) {
-//            return done(null, false, { message: 'Incorrect username.' });
-//        }
-//        return done(null, user);
-//    })
-//}));
-
 passport.use(new LocalStrategy({
     usernameField: 'name',
     passwordField: 'password'
@@ -183,20 +153,6 @@ passport.deserializeUser(function (id, done) {
         done(err, user);
     });
 });
-//app.post('/login', function (req, res, next) {
-//    passport.authenticate('local', function (err, user, info) {
-//        //req.session.passport = user;
-//        console.log(req.session);
-//        //console.log("user" + req.user);
-//        if (!user) {
-//            res.json({ message: 'Incorrect' });
-//        } else {
-//            //req.session.passport = user;
-//            console.log(req.session);
-//            res.json(user);
-//        }
-//    })(req, res, next)
-//});
 
 app.get('/login', function (req, res) {
     User.find(function (err, docs) {

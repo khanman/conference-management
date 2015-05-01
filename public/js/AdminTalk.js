@@ -1,4 +1,7 @@
-﻿
+﻿/**
+ * Mansoor Ahmed Khan
+ *
+**/
 app.factory('AdminTalkService', function ($http) {
     var edittalk = function (conf, callback) {
         $http.put("/rest/talk/update/" + conf._id, conf)
@@ -125,8 +128,6 @@ app.controller("AdminTalkController", function ($scope, $http, $routeParams, Adm
         if (!flag) {
             user.c_Presented.push({ pName: conf.name, _id: confid })
         }
-        //user.talk_presented.push({ talkname: $scope.talk.tname, _id: talkid, desc: $scope.talk.desc })
-        //user.c_Presented.push({ pName: conf.name, _id: confid })
         AdminTalkService.edituser(user, function (response) {
             $scope.talkbyid = response;
         });

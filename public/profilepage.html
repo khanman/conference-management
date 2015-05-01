@@ -1,14 +1,13 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Conference</title>
+    <title>Profile</title>
     <link href="css/bootstrap.css" rel="stylesheet" />
     <link href="css/profile.css" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
-
 
     <div ng-include="'usermenu.html'"></div>
     <br/><br/>
@@ -99,15 +98,16 @@
                         <div class="row">
                             <div class="col-md-4" ng-repeat="conf in user.c_Presented">
                                 <div class="thumbnail">
-                                    <img src="http://placehold.it/500x150/4AB0D9/ffffff&text={{conf.pName}}">
-                                    <div class="caption">
-                                        <h3>
-                                        <a href="#/conference/{{conf._id}}">
-                                            {{conf.pName}}
-                                        </a>
-                                        </h3>
-                                    </div>
-                                </div>
+                                    <a href="#/conference/{{conf._id}}">
+                                        <img src="http://placehold.it/500x150/4AB0D9/ffffff&text={{conf.pName}}"></a>
+                                        <div class="caption">
+                                            <h3>
+                                                <!--<a href="#/conference/{{conf._id}}">
+                                                    {{conf.pName}}
+                                                </a>-->
+                                            </h3>
+                                        </div>
+</div>
                             </div>
                         </div>
                     </div>
@@ -121,11 +121,11 @@
                                 <div class="thumbnail">
                                     <img src="http://placehold.it/500x100/0B8055/ffffff&text={{talks.talkname}}">
                                     <div class="caption">
-                                        <h3>
+                                        <!--<h3>
                                         <a href="#/Mytalks/{{talk._id}}">
                                             {{talks.talkname}}
                                         </a>
-                                        </h3>
+                                        </h3>-->
                                         <p>
                                             {{ talks.desc | limitTo: 50 }}{{talks.desc.length > 50 ? '...' : ''}}
                                         </p>
