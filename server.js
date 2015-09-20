@@ -56,7 +56,7 @@ app.post('/api/photo', function (req, res) {
     }
 });
 
-// Conference 
+// Conference Schema 
 var ConferenceSchema = new mongoose.Schema({
     name: String,
     state: String,
